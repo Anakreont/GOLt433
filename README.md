@@ -16,10 +16,10 @@ through a public iGate.**
 - Drawings in `img/` (Polish): USB cable on the PROG tab, where to solder antennas and cells, the FFC workaround.
 
 ### Camera connector J1 - use the corrected BOM
-The original BOM (`jlcpcb/BOM_t433lite.csv`) has a bottom-contact FPC connector for J1. With it the camera's pin 1 lands on
+The original BOM (`pcb_lite/jlcpcb/BOM_t433lite.csv`) has a bottom-contact FPC connector for J1. With it the camera's pin 1 lands on
 pad 24 (pin order mirrored): the camera gets hot and does not work. **Do not order with that BOM.**
 
-**`jlcpcb/BOM_t433lite_v1_0b.csv` is the corrected BOM:** J1 = AFC07-S24ECA-00 (LCSC C262643, top contact). The camera then
+**`pcb_lite/jlcpcb/BOM_t433lite_v1_0b.csv` is the corrected BOM:** J1 = AFC07-S24ECA-00 (LCSC C262643, top contact). The camera then
 goes in lens down, contacts up, and pin 1 meets pin 1. Gerbers and CPL stay the same.
 - The signal pads are identical; the mounting tabs land on the existing pads, which are smaller than the tabs.
 - The body is about 1.5 mm longer: 0.1-0.4 mm from U7 and about 0.3 mm over the board edge. Tight, check the placement preview.
