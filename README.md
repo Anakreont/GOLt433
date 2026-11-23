@@ -15,17 +15,15 @@ through a public iGate.**
 - `kicad/` - KiCad 7 board; `jlcpcb/` - Gerbers, BOM, CPL; the Python/shell scripts are the generator used to build and route the board.
 - Drawings in `img/` (Polish): USB cable on the PROG tab, where to solder antennas and cells, the FFC workaround.
 
-### Camera connector J1 - use the corrected BOM
-The original BOM (`pcb_lite/jlcpcb/BOM_t433lite.csv`) has a bottom-contact FPC connector for J1. With it the camera's pin 1 lands on
-pad 24 (pin order mirrored): the camera gets hot and does not work. **Do not order with that BOM.**
-
-**`pcb_lite/jlcpcb/BOM_t433lite_v1_0b.csv` is the corrected BOM:** J1 = AFC07-S24ECA-00 (LCSC C262643, top contact). The camera then
-goes in lens down, contacts up, and pin 1 meets pin 1. Gerbers and CPL stay the same.
-- The signal pads are identical; the mounting tabs land on the existing pads, which are smaller than the tabs.
-- The body is about 1.5 mm longer: 0.1-0.4 mm from U7 and about 0.3 mm over the board edge. Tight, check the placement preview.
-- This BOM has not been built yet. The five existing boards were made with the original BOM and are used with a workaround:
-  an FFC 24-pin 0.5 mm coupler plus a **type B** ribbon, camera turned over (`img/T433_tasma_typ_B.png`).
-- A corrected layout (connector moved and rotated) is planned.
+### Camera connector J1 - top contact
+J1 in the BOM is **AFC07-S24ECA-00 (LCSC C262643, top contact)**: the camera goes in lens down, contacts up.
+The first five boards were built with a bottom-contact connector, which mirrors the pin order (camera pin 1 on pad 24):
+the camera gets hot and does not work. That part has been removed from the BOM. If you have such a board, use an
+FFC 24-pin 0.5 mm coupler plus a **type B** ribbon with the camera turned over (`img/T433_tasma_typ_B.png`).
+- The footprint on the board is still the one drawn for the old connector. The signal pads are identical; the mounting
+  tabs of the new part land on the existing pads, which are smaller than the tabs.
+- The new body is about 1.5 mm longer: 0.1-0.4 mm from U7 and about 0.3 mm over the board edge. Check the placement preview.
+- **A board with this connector has not been built yet.** A corrected layout (connector moved and rotated) is planned.
 
 Other notes: the E22 crystal drifts about 40 Hz/s during the first seconds of transmission, so the first SF12 frames after
 a cold start are lost (firmware sends warm-up frames). A module with a TCXO would be better.
@@ -57,5 +55,5 @@ Position frame from a real fix above 1000 m, waiting for sun, Zener protection w
 The HF FT8/WSPR tracker with a receiver from the same author: https://github.com/Anakreont/R20-tracker-Rx-Tx-KF
 
 ## Licence
-`firmware/` and `receiver_pc/` are GPL-3.0 (see `LICENSE`): they include SSDV, Reed-Solomon and base91 code from Pecan Pico 9 by Philip Heron.
-No licence has been chosen yet for the hardware files in `pcb_lite/` and `img/`. Design by SQ9GOL. Source comments and drawings are in Polish.
+GPL-3.0 for the whole repository (see `LICENSE`). The firmware and the PC receiver include SSDV, Reed-Solomon and base91
+code from Pecan Pico 9 by Philip Heron (GPL v3). Design by SQ9GOL. Source comments and drawings are in Polish.
