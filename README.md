@@ -1,4 +1,6 @@
-# T433 lite - 433 MHz LoRa APRS balloon tracker with a camera
+# GOLt433 - 433 MHz LoRa APRS balloon tracker with a camera
+
+Board name on the PCB and in the files: **T433 lite**.
 
 ![T433 lite v1.0 top](img/podglad_gora.png)
 
@@ -52,7 +54,7 @@ Position frame from a real fix above 1000 m, waiting for sun, Zener protection w
 `N0CALL` in the code is a placeholder. Set your own callsign before transmitting; an amateur licence is required.
 
 ## Related
-The HF FT8/WSPR tracker with a receiver from the same author: https://github.com/Anakreont/R20-tracker-Rx-Tx-KF
+GOLr20, the HF FT8/WSPR tracker with a receiver from the same author: https://github.com/Anakreont/GOLr20
 
 ## Licence
 GPL-3.0 for the whole repository (see `LICENSE`). The firmware and the PC receiver include SSDV, Reed-Solomon and base91
