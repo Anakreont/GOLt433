@@ -15,13 +15,17 @@ through a public iGate.**
 - `kicad/` - KiCad 7 board; `jlcpcb/` - Gerbers, BOM, CPL; the Python/shell scripts are the generator used to build and route the board.
 - Drawings in `img/` (Polish): USB cable on the PROG tab, where to solder antennas and cells, the FFC workaround.
 
-### Known error in v1.0 - read before ordering
-**The camera connector J1 has its pin order mirrored.** With the bottom-contact connector in the BOM the camera's pin 1
-lands on pad 24. Do not plug the camera straight into J1 - it gets hot and does not work.
-- Workaround used on the built boards: an FFC 24-pin 0.5 mm coupler plus a **type B** ribbon, camera turned over (`img/T433_tasma_typ_B.png`).
-- `jlcpcb/BOM_t433lite_v1_0b.csv` swaps J1 for a top-contact connector (C262643). The pads match but the body is longer and
-  very close to U7. **Not tried.**
-- The layout has not been corrected yet.
+### Camera connector J1 - use the corrected BOM
+The original BOM (`jlcpcb/BOM_t433lite.csv`) has a bottom-contact FPC connector for J1. With it the camera's pin 1 lands on
+pad 24 (pin order mirrored): the camera gets hot and does not work. **Do not order with that BOM.**
+
+**`jlcpcb/BOM_t433lite_v1_0b.csv` is the corrected BOM:** J1 = AFC07-S24ECA-00 (LCSC C262643, top contact). The camera then
+goes in lens down, contacts up, and pin 1 meets pin 1. Gerbers and CPL stay the same.
+- The signal pads are identical; the mounting tabs land on the existing pads, which are smaller than the tabs.
+- The body is about 1.5 mm longer: 0.1-0.4 mm from U7 and about 0.3 mm over the board edge. Tight, check the placement preview.
+- This BOM has not been built yet. The five existing boards were made with the original BOM and are used with a workaround:
+  an FFC 24-pin 0.5 mm coupler plus a **type B** ribbon, camera turned over (`img/T433_tasma_typ_B.png`).
+- A corrected layout (connector moved and rotated) is planned.
 
 Other notes: the E22 crystal drifts about 40 Hz/s during the first seconds of transmission, so the first SF12 frames after
 a cold start are lost (firmware sends warm-up frames). A module with a TCXO would be better.
